@@ -33,6 +33,10 @@ angular.module('projectHomeGeneratorUiApp')
     	return $http.delete('/project-home-generator/project/'+projectId);
     };
 
+    this.updateProject = function(projectId, project) {
+		return $http.post('/project-home-generator/project/'+projectId, project);
+    };
+
     this.addTool = function(projectId, tool) {
     	return $http.put('/project-home-generator/project/'+projectId+'/tool', tool);
     };

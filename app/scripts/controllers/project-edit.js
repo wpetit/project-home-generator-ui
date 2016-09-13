@@ -76,6 +76,12 @@ angular.module('projectHomeGeneratorUiApp')
     	});
     };
 
+    $scope.saveProject = function() {
+    	project.updateProject($scope.project.id, $scope.project).then(function(result) {
+    		$scope.project = result.data;
+    	});
+    }
+
     $scope.saveLink = function() {
     	$scope.addLink = false;
     	$scope.actionInProgress = false;
