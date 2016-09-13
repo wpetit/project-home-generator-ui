@@ -1,0 +1,6 @@
+<form name="envForm">
+	<div class="form-group" ng-class="{ 'has-error' : envForm.envName.$invalid  && !envForm.envName.$pristine }">
+		<label for="inputEnvName" class="control-label">Name</label>
+		<input type="text" class="form-control" id="inputEnvName" name="envName" ng-model="env.name" placeholder="Enter the name of the environment." required>
+	</div>
+<form>

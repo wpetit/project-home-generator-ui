@@ -1,0 +1,12 @@
+<form name="sonarConfigurationForm">
+	<div class="form-group" ng-class="{ 'has-error' : sonarConfigurationForm.sonarConfigurationUrl.$invalid  && !sonarConfigurationForm.sonarConfigurationUrl.$pristine }">
+		<label for="inputSonarConfigurationUrl" class="control-label">Url</label>
+		<input type="text" pattern="(^(http(s?):\/\/)?(((www\.)?[a-zA-Z0-9\.\-\_]+(\.[a-zA-Z]{2,3})+)|(\b(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\b))(\/[a-zA-Z0-9\_\-\s\.\/\?\%\#\&\=]*)?\/sonar\/?$)" class="form-control" id="inputSonarConfigurationUrl" name="sonarConfigurationUrl" ng-model="sonarConfiguration.url" placeholder="Enter the URL of SonarQube." required ng-disabled="!editable">
+		<p class="help-block">Sonar URL must end with "/sonar".</p>
+	</div>
+	<div class="form-group" ng-class="{ 'has-error' : sonarConfigurationForm.sonarConfigurationResources.$invalid  && !sonarConfigurationForm.sonarConfigurationResources.$pristine }">
+		<label for="inputSonarConfigurationResources" class="control-label">Projects</label>
+		<input type="text" class="form-control" id="inputSonarConfigurationResources" name="sonarConfigurationResources" ng-model="sonarConfiguration.resources" placeholder="Enter the name of SonarQube projects." required ng-disabled="!editable">
+		<p class="help-block">SonarQube projects must be separated by comma ','.</p>
+	</div>
+<form>

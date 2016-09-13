@@ -1,0 +1,26 @@
+<div class="page-header" ng-init="init()">
+  <h1>Projects list <small>manage your projects</small></h1>
+</div>
+<button class="btn btn-success" type="button" ng-click="createProject()">Create</button>
+<table class="table table-responsive table-striped table-hover">
+<thead>
+	<tr>
+		<td>Id</td>
+		<td>Name</td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+</thead>
+<tbody>
+	<tr ng-repeat="project in projects">
+		<td>{{ project.id }}</td>
+		<td>{{ project.name }}</td>
+		<td class="column-fit"><button class="btn btn-primary" type="button" ng-click="generateProject( project.id)"> <span class="glyphicon glyphicon glyphicon-download-alt"></span> </button>
+		</td>
+		<td class="column-fit"><button class="btn btn-success" type="button" ng-click="editProject(project.id)"> <span class="glyphicon glyphicon-pencil"></span> </button></td>
+		<td class="column-fit"><button class="btn btn-danger " type="button" ng-click="deleteProject($index, project.id)"> <span class="glyphicon glyphicon-trash"></span> </button>
+		</td>				
+	</tr>
+</tbody>
+</table>

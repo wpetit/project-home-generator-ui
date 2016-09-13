@@ -1,0 +1,10 @@
+<form name="envLinkForm">
+	<div class="form-group" ng-class="{ 'has-error' : envLinkForm.envLinkName.$invalid  && !envLinkForm.envLinkName.$pristine }">
+		<label for="inputEnvLinkName" class="control-label">Name</label>
+		<input type="text" class="form-control" id="inputEnvLinkName" name="envLinkName" ng-model="envLink.name" placeholder="Enter the name of the environment link." required>
+	</div>
+	<div class="form-group" ng-class="{ 'has-error' : envLinkForm.envLinkUrl.$invalid  && !envLinkForm.envLinkUrl.$pristine }">
+		<label for="inputEnvLinkUrl" class="control-label">Url</label>
+		<input type="url" class="form-control" id="inputEnvLinkUrl" name="envLinkUrl" ng-model="envLink.url" placeholder="Enter the URL of the environment link." required>
+	</div>
+<form>

@@ -1,0 +1,15 @@
+<form name="linkForm">
+	<div class="form-group" ng-class="{ 'has-error' : linkForm.linkName.$invalid  && !linkForm.linkName.$pristine }">
+		<label for="inputLinkName" class="control-label">Name</label>
+		<input type="text" class="form-control" id="inputLinkName" name="linkName" ng-model="link.name" placeholder="Enter the name of the link." required>
+	</div>
+	<div class="form-group" ng-class="{ 'has-error' : linkForm.linkUrl.$invalid  && !linkForm.linkUrl.$pristine }">
+		<label for="inputLinkUrl" class="control-label">Url</label>
+		<input type="url" class="form-control" id="inputLinkUrl" name="linkUrl" ng-model="link.url" placeholder="Enter the URL of the link." required>
+	</div>
+	<div class="form-group" ng-class="{ 'has-error' : linkForm.linkImage.$invalid  && !linkForm.linkImage.$pristine }">
+		<label for="inputLinkImage" class="control-label">Image</label>
+		<input type="text" pattern="(^(http(s?):\/\/)?(((www\.)?[a-zA-Z0-9\.\-\_]+(\.[a-zA-Z]{2,3})+)|(\b(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\b))(\/[a-zA-Z0-9\_\-\s\.\/\?\%\#\&\=]*)?$)|(^\/.*)" class="form-control" id="inputLinkImage" name="linkImage" ng-model="link.image" placeholder="Enter the image of the link." required>
+		<p class="help-block">The image could be a path relative to your installation (e.g. /images/link.png) or an URL. Its height must be of 20px.</p>
+	</div>
+<form>

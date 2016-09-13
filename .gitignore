@@ -1,6 +1,10 @@
 node_modules/
 bower_components/
+.settings/
+docker/project-home-generator-ui/
 *.log
-
+.tmp/
+.sass-cache/
 build/
 dist/
+/project-home-generator-ui.sublime*

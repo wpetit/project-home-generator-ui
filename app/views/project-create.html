@@ -1,0 +1,132 @@
+<div class="page-header">
+  <h1>Create project homepage <small>that fit your needs</small></h1>
+</div>
+<form name="projectForm" class="form-horizontal">
+	<div class="row">
+		<div class="col-xs-12">
+		<div class="form-group" ng-class="{ 'has-error' : projectForm.projectName.$invalid  && !projectForm.projectName.$pristine }">
+			<label for="inputName" class="control-label">Name</label>
+			<input type="text" class="form-control" id="inputName" name="projectName" ng-model="project.name" placeholder="Enter the name of the project." ng-disabled="projectCreated" required>
+		</div>
+		<div class="form-group" ng-class="{ 'has-error' : projectForm.projectImage.$invalid  && !projectForm.projectImage.$pristine }">
+			<label for="inputImage" class="control-label">Image</label>
+			<input type="text" pattern="(^(http(s?):\/\/)?(((www\.)?[a-zA-Z0-9\.\-\_]+(\.[a-zA-Z]{2,3})+)|(\b(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\b))(\/[a-zA-Z0-9\_\-\s\.\/\?\%\#\&\=]*)?$)|(^\/.*)" class="form-control" id="inputImage" name="projectImage" ng-model="project.image" placeholder="Enter a path to the project icon." ng-disabled="projectCreated">
+			<p class="help-block">The image could be a path relative to your installation (e.g. /images/project.png) or an URL. Its height must be of 20px.</p>
+		</div>
+	</div>
+	<button class="btn btn-success" ng-if="!projectCreated" ng-click="createProject()"  ng-disabled="projectForm.$invalid">Create</button>
+	<div ng-if="projectCreated">
+		<hr/>
+		<div class="row">
+			<h4>Links <small>all links you may need</small></h4>
+			<table class="table table-condensed table-striped" ng-if="links.length">
+				<thead>
+					<tr>
+						<td>Name</td>
+						<td>Url</td>
+						<td>Image</td>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="link in links">
+						<td>{{link.name}}</td>
+						<td>{{link.url}}</td>
+						<td>{{link.image}}</td>
+					</tr>
+				</tbody>
+			</table>
+			<button class="btn btn-success" ng-if="!addLink && !actionInProgress" ng-click="showAddLink()">Add</button>
+			<div class="col-xs-offset-1" ng-if="addLink">
+				<edit-link link="link"></edit-link>
+				<button class="btn btn-success" ng-click="saveLink()" ng-disabled="projectForm.$invalid">Save</button>
+			</div>
+		</div>
+		<hr/>
+		<div class="row">
+			<h4>Tools <small>all tools you may need</small></h4>
+			<table class="table table-condensed table-striped" ng-if="tools.length">
+				<thead>
+					<tr>
+						<td>Name</td>
+						<td>Url</td>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="tool in tools">
+						<td>{{tool.name}}</td>
+						<td>{{tool.url}}</td>
+					</tr>
+				</tbody>
+			</table>
+			<button class="btn btn-success" ng-if="!addTool && !actionInProgress" ng-click="showAddTool()">Add</button>
+			<div class="col-xs-offset-1" ng-if="addTool">
+				<edit-tool tool="tool"></edit-tool>
+				<button class="btn btn-success" ng-click="saveTool()" ng-disabled="projectForm.$invalid">Save</button>
+			</div>
+		</div>
+		<hr/>
+		<div class="row">
+			<h4>Environments <small>all environments you have</small></h4>
+			<div ng-repeat="env in envs">
+				<div><label class="control-label">{{env.name}}</label></div>
+				<div class="col-xs-offset-1">
+					<h4>Environment links</h4>
+					<table class="table table-condensed table-striped table-bordered" ng-if="envLinks[env.id].length">
+						<thead>
+							<tr>
+								<td>Name</td>
+								<td>Url</td>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="envLink in envLinks[env.id]">
+								<td>{{envLink.name}}</td>
+								<td>{{envLink.url}}</td>
+							</tr>
+						</tbody>
+					</table>
+					<button class="btn btn-success" ng-if="!addEnvLink[envId] && !actionInProgress" ng-click="showAddEnvLink(env.id)">Add</button>
+					<div ng-if="addEnvLink[env.id]">
+						<edit-env-link env-link="envLink"></edit-env-link>
+						<button class="btn btn-success" ng-click="saveEnvLink(env.id)" ng-disabled="projectForm.$invalid">Save</button>
+					</div>
+				</div>
+			</div>
+			<button class="btn btn-success" ng-if="!addEnv && !actionInProgress" ng-click="showAddEnv()">Add</button>
+			<div class="col-xs-offset-1" ng-if="addEnv">
+				<edit-env env="env"></edit-env>
+				<button class="btn btn-success" ng-click="saveEnv()" ng-disabled="projectForm.$invalid">Save</button>
+			</div>
+		</div>
+		<hr/>
+		<div class="row">
+			<h4>Apache <small>the way to access to your homepage</small></h4>
+			<button class="btn btn-success" ng-if="!configureApache && !actionInProgress" ng-click="showApacheConfiguration()" ng-disabled="projectForm.$invalid">Configure</button>
+			<div class="col-xs-offset-1">
+				<edit-apache-configuration ng-if="configureApache" apache-configuration="apacheConfiguration" editable="!apacheConfigured"></edit-apache-configuration>
+				<button class="btn btn-success" ng-if="!apacheConfigured && configureApache" ng-click="saveApacheConfiguration()"  ng-disabled="projectForm.$invalid">Save</button>
+			</div>
+		</div>
+		<hr/>
+		<div class="row">
+			<h4>Jenkins <small>jobs you want to follow</small></h4>
+			<button class="btn btn-success" ng-if="!configureJenkins && !actionInProgress" ng-click="showJenkinsConfiguration()" ng-disabled="projectForm.$invalid">Configure</button>
+			<div class="col-xs-offset-1">
+				<edit-jenkins-configuration ng-if="configureJenkins" jenkins-configuration="jenkinsConfiguration" editable="!jenkinsConfigured"></edit-jenkins-configuration>
+				<button class="btn btn-success" ng-if="!jenkinsConfigured && configureJenkins" ng-click="saveJenkinsConfiguration()"  ng-disabled="projectForm.$invalid">Save</button>
+			</div>
+		</div>
+		<hr/>
+		<div class="row">
+			<h4>SonarQube <small>projects you want to follow</small></h4>
+			<button class="btn btn-success" ng-if="!configureSonar && !actionInProgress" ng-click="showSonarConfiguration()" ng-disabled="projectForm.$invalid">Configure</button>
+			<div class="col-xs-offset-1">
+				<edit-sonar-configuration ng-if="configureSonar" sonar-configuration="sonarConfiguration" editable="!sonarConfigured"></edit-sonar-configuration>
+				<button class="btn btn-success" ng-if="!sonarConfigured && configureSonar" ng-click="saveSonarConfiguration()"  ng-disabled="projectForm.$invalid">Save</button>
+			</div>
+		</div>
+		<div class="row">
+			<button class="btn btn-success pull-right" ng-click="finish()" ng-disabled="projectForm.$invalid || actionInProgress">Finish</button>
+		</div>
+	</div>
+</form>

@@ -1,0 +1,12 @@
+<form name="jenkinsConfigurationForm">
+	<div class="form-group" ng-class="{ 'has-error' : jenkinsConfigurationForm.jenkinsConfigurationUrl.$invalid  && !jenkinsConfigurationForm.jenkinsConfigurationUrl.$pristine }">
+		<label for="inputJenkinsConfigurationUrl" class="control-label">Url</label>
+		<input type="text" pattern="(^(http(s?):\/\/)?(((www\.)?[a-zA-Z0-9\.\-\_]+(\.[a-zA-Z]{2,3})+)|(\b(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\b))(\/[a-zA-Z0-9\_\-\s\.\/\?\%\#\&\=]*)?\/jenkins\/?$)" class="form-control" id="inputJenkinsConfigurationUrl" name="jenkinsConfigurationUrl" ng-model="jenkinsConfiguration.url" placeholder="Enter the URL of Jenkins." required ng-disabled="!editable">
+		<p class="help-block">Jenkins URL must end with "/jenkins".</p>
+	</div>
+	<div class="form-group" ng-class="{ 'has-error' : jenkinsConfigurationForm.jenkinsConfigurationJobs.$invalid  && !jenkinsConfigurationForm.jenkinsConfigurationJobs.$pristine }">
+		<label for="inputJenkinsConfigurationJobs" class="control-label">Jobs</label>
+		<input type="text" class="form-control" id="inputJenkinsConfigurationJobs" name="jenkinsConfigurationJobs" ng-model="jenkinsConfiguration.jobs" placeholder="Enter the name of jenkins jobs." required ng-disabled="!editable">
+		<p class="help-block">Jenkins jobs must be separated by comma ','.</p>
+	</div>
+<form>

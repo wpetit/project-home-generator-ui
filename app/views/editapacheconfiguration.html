@@ -1,0 +1,6 @@
+<form name="apacheConfigurationForm">
+	<div class="form-group" ng-class="{ 'has-error' : apacheConfigurationForm.apacheConfigurationUrl.$invalid  && !apacheConfigurationForm.apacheConfigurationUrl.$pristine }">
+		<label for="inputApacheConfigurationUrl" class="control-label">Url</label>
+		<input type="url" class="form-control" id="inputApacheConfigurationUrl" name="apacheConfigurationUrl" ng-model="apacheConfiguration.url" placeholder="Enter the URL of Apache." required ng-disabled="!editable">
+	</div>
+</form>

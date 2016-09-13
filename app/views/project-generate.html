@@ -1,0 +1,46 @@
+<div ng-init="init()">
+	<div class="page-header">
+	  <h1>Generate <b>Project-Home</b> configuration file</small></h1>
+	</div>
+	<h3>Download the configuration for the project {{project.name}}&nbsp;<a ng-href="{{generateUrl}}" class="btn btn-primary" download="environment.json"><span class="glyphicon glyphicon-download-alt"></span></a></h3>
+	<p class="help-block">The file must be named 'environment.json' and located in the 'resources' directory of your installation.
+	<br/>
+	SonarQube and Jenkins credentials must be customized in the generated file. You can use the following form to generate credentials to set in the file.</p>
+
+	<form name="base64Form" class="form-horizontal">
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="form-group" ng-class="{ 'has-error' : base64Form.jenkinsUser.$invalid  && !base64Form.jenkinsUser.$pristine }">
+					<label for="inputJenkinsUser" class="control-label">Jenkins username</label>
+					<input type="text" class="form-control" id="inputJenkinsUser" name="jenkinsUser" ng-model="jenkinsUser" ng-change="generateJenkinsBase64()" placeholder="Enter the Jenkins user"required>
+				</div>
+				<div class="form-group" ng-class="{ 'has-error' : base64Form.jenkinsPassword.$invalid  && !base64Form.jenkinsPassword.$pristine }">
+					<label for="inputJenkinsPassword" class="control-label">Jenkins password</label>
+					<input type="password" class="form-control" id="inputJenkinsPassword" name="jenkinsPassword" ng-model="jenkinsPassword" ng-change="generateJenkinsBase64()" placeholder="Enter the Jenkins password" required>
+				</div>
+				<div ng-if="base64Jenkins"><label class="control-label">Generated Jenkins credentials:&nbsp;</label>{{base64Jenkins}}</div>
+			</div>
+		</div>
+		<br/>
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="form-group" ng-class="{ 'has-error' : base64Form.sonarUser.$invalid  && !base64Form.sonarUser.$pristine }">
+					<label for="inputSonarUser" class="control-label">SonarQube username</label>
+					<input type="text" class="form-control" id="inputSonarUser" name="sonarUser" ng-model="sonarUser" ng-change="generateSonarBase64()" placeholder="Enter the SonarQube user"required>
+				</div>
+				<div class="form-group" ng-class="{ 'has-error' : base64Form.sonarPassword.$invalid  && !base64Form.sonarPassword.$pristine }">
+					<label for="inputSonarPassword" class="control-label">SonarQube password</label>
+					<input type="password" class="form-control" id="inputSonarPassword" name="sonarPassword" ng-model="sonarPassword" ng-change="generateSonarBase64()" placeholder="Enter the SonarQube password" required>
+				</div>
+				<div ng-if="base64Sonar"><label class="control-label">Generated SonarQube credentials:&nbsp;</label>{{base64Sonar}}</div>
+			</div>
+		</div>
+	</form>
+	<hr/>
+	<h3>Apache reverse proxy configuration to add to your httpd.conf file.</h3>
+<pre ng-if="sonarUrl">ProxyPass "/sonar" "{{sonarUrl}}"
+ProxyPassReverse "/sonar" "{{sonarUrl}}"</pre>
+<pre ng-if="jenkinsUrl">ProxyPass "/jenkins" "{{jenkinsUrl}}"
+ProxyPassReverse "/jenkins" "{{jenkinsUrl}}"</pre>
+
+</div>

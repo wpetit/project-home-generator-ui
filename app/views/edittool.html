@@ -1,0 +1,10 @@
+<form name="toolForm">
+	<div class="form-group" ng-class="{ 'has-error' : toolForm.toolName.$invalid  && !toolForm.toolName.$pristine }">
+		<label for="inputToolName" class="control-label">Name</label>
+		<input type="text" class="form-control" id="inputToolName" name="toolName" ng-model="tool.name" placeholder="Enter the name of the tool." required>
+	</div>
+	<div class="form-group" ng-class="{ 'has-error' : toolForm.toolUrl.$invalid  && !toolForm.toolUrl.$pristine }">
+		<label for="inputToolUrl" class="control-label">Url</label>
+		<input type="url" class="form-control" id="inputToolUrl" name="toolUrl" ng-model="tool.url" placeholder="Enter the URL of the tool." required>
+	</div>
+<div>
