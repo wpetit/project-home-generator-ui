@@ -64,19 +64,22 @@ angular.module('projectHomeGeneratorUiApp')
         config.timeout = 3000;
         $rootScope.currentActions++;
         $rootScope.progressInstance.start();
+        $rootScope.showOverlay = true;
         return config;
       },
       'response': function(response) {
         $rootScope.currentActions--;
         if($rootScope.currentActions === 0) {
-          $rootScope.progressInstance.complete();  
+          $rootScope.progressInstance.complete(); 
+          $rootScope.showOverlay = false; 
         }
         return response;
       },
       'responseError': function(rejection) {
         $rootScope.currentActions--;
         if($rootScope.currentActions === 0) {
-          $rootScope.progressInstance.complete();  
+          $rootScope.progressInstance.complete(); 
+          $rootScope.showOverlay = false; 
         }
         return $q.reject(rejection);
       }
