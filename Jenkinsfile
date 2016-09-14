@@ -15,6 +15,7 @@ node {
     	sh "npm install -g grunt-cli"
     	sh "npm install -g bower"
     	sh "bower install"
+    	sh "grunt build"
     }
     
     stage('Unit-Tests') {
