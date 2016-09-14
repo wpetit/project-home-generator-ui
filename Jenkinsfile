@@ -1,6 +1,6 @@
 node {	
 	env.PATH = "${tool 'sonarqube-scanner-2.7'}/bin:${env.PATH}"
-	env.PATH = "${tool 'nodejs'}/bin:${env.PATH}"
+	env.PATH = "${tool 'nodejs-6.5.0'}/bin:${env.PATH}"
 	
 	stage('Checkout') {
 	    checkout scm
