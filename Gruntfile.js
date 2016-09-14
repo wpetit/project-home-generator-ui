@@ -453,13 +453,15 @@ module.exports = function (grunt) {
     'string-replace': {
       version: {
         files: {
-          '<%= yeoman.dist %>/index.html':'<%= yeoman.dist %>/index.html'
+          '<%= yeoman.dist %>/index.html':'<%= yeoman.dist %>/index.html',
+          'sonar-project.properties':'sonar-project.properties'
         },
         options: {
           replacements: [{
             pattern: /{{ VERSION }}/g,
             replacement: '<%= yeoman.version %>'
-          }]
+          }
+          ]
         }
       }
     },
