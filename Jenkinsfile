@@ -12,6 +12,9 @@ node {
     
     stage('Build') {
     	sh "npm install"
+    	sh "npm install grunt-cli"
+    	sh "npm install grunt"
+    	sh "npm install bower"
     	sh "bower install"
     }
     
