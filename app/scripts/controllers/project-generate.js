@@ -24,7 +24,11 @@ angular.module('projectHomeGeneratorUiApp')
 	   			});
    			});
 
-   		});
+   		}, function(error) {
+    		if(error.status === 404) {
+    			$window.location = '404.html';
+    		}
+    	});
   	};
 
   	$scope.generateJenkinsBase64 = function() {

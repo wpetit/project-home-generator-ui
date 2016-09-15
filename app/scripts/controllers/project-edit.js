@@ -8,7 +8,7 @@
  * Controller of the projectHomeGeneratorUiApp
  */
 angular.module('projectHomeGeneratorUiApp')
-  .controller('ProjectEditCtrl', function ($scope, $routeParams, $location, project) {
+  .controller('ProjectEditCtrl', function ($scope, $routeParams, $window, $location, project) {
     $scope.init = function() {
     	$scope.projectId = $routeParams.projectId;
     	$scope.envLinks = [];
@@ -16,6 +16,10 @@ angular.module('projectHomeGeneratorUiApp')
 
     	project.getProject($scope.projectId).then(function(result) {
     		$scope.project = result.data;
+    	}, function(error) {
+    		if(error.status === 404) {
+    			$window.location = '404.html';
+    		}
     	});
   		project.getSonarConfiguration($scope.projectId).then(function(result) {
 			$scope.sonarConfiguration = result.data;
