@@ -41,6 +41,7 @@ node {
 		sh 'cp dist/*.zip docker/'
 		dir('docker') {
 			echo "Creating docker image"
+			sh 'unzip -d project-home-generator-ui project-home-generator-ui-*.zip'
 			sh 'sudo docker build -t project-home-generator-ui .'
 			sh 'rm -f *.zip'
 		}
