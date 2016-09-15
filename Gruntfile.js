@@ -454,7 +454,7 @@ module.exports = function (grunt) {
       version: {
         files: {
           '<%= yeoman.dist %>/index.html':'<%= yeoman.dist %>/index.html',
-          'sonar-project.properties':'sonar-project.properties'
+          '<%= yeoman.dist %>/sonar-project.properties':'sonar-project.properties'
         },
         options: {
           replacements: [{
