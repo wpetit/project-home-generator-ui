@@ -446,6 +446,23 @@ module.exports = function (grunt) {
         cwd: '<%= yeoman.app %>/styles',
         dest: '.tmp/styles/',
         src: '{,*/}*.css'
+      },
+      docker: {
+    	files: [{
+            expand: true,
+            dot: true,
+            cwd: 'docker',
+            dest: '<%= yeoman.dist %>/docker',
+            src: '*'
+          }, 
+          {
+            expand: true,
+            dot: true,
+            cwd: '<%= yeoman.dist %>',
+            dest: '<%= yeoman.dist %>/docker',
+            src: '*.zip'
+          }
+    	]
       }
     },
 
@@ -547,7 +564,8 @@ module.exports = function (grunt) {
     'usemin',
     'htmlmin',
     'string-replace',
-    'compress'
+    'compress',
+    'copy:docker'
   ]);
 
   grunt.registerTask('default', [

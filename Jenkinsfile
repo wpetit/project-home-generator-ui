@@ -37,9 +37,8 @@ node {
 	}
 	
 	stage('Deploy') {
-		sh 'grunt clean build'
-		sh 'cp dist/*.zip docker/'
-		dir('docker') {
+		sh 'grunt build'
+		dir('dist/docker') {
 			echo "Creating docker image"
 			sh 'unzip -d project-home-generator-ui project-home-generator-ui-*.zip'
 			sh 'sudo docker build -t project-home-generator-ui .'
