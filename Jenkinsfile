@@ -37,7 +37,7 @@ node {
 	}
 	
 	stage('Deploy') {
-		sh 'grunt build'
+		sh 'grunt clean build'
 		sh 'cp dist/*.zip docker/'
 		dir('docker') {
 			echo "Creating docker image"
