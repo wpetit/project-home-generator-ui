@@ -31,7 +31,7 @@ node {
     }
 	
 	stage('Code Analysis') {
-		sh 'sonar-scanner -Dproject.settings=dist/sonar.properties'
+		sh 'sonar-scanner -Dproject.settings=dist/sonar-project.properties'
 	}
 	
 	stage('Deploy') {
