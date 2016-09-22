@@ -12,10 +12,10 @@ node {
     
     stage('Build') {
     	sh "npm install --no-bin-link"
-    	sh "npm install -g grunt-cli"
-    	sh "npm install -g bower"
-    	sh "bower install"
-    	sh "grunt build"
+    	sh "npm install --no-bin-link -g grunt-cli"
+    	sh "npm install --no-bin-link bower"
+    	sh "node_modules/bower/bin/bower install"
+    	sh "node_modules/grunt/bin/grunt build"
     }
     
     stage('Unit-Tests') {
