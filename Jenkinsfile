@@ -14,6 +14,7 @@ node {
     	sh "npm install --no-bin-link"
     	sh "npm install --no-bin-link -g grunt-cli"
     	sh "npm install --no-bin-link bower"
+    	sh "npm install --no-bin-link grunt"
     	sh "node_modules/bower/bin/bower install"
     	sh "node_modules/grunt/bin/grunt build"
     }
