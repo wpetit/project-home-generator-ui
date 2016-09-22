@@ -13,7 +13,7 @@ node {
     stage('Build') {
     	sh "npm install --no-bin-link"
     	sh "bower install"
-    	sh "grunt clean"
+    	sh "grunt build"
     }
     
     stage('Unit-Tests') {
